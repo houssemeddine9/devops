@@ -1,0 +1,29 @@
+version: "3"
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:latest
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_USER:root
+      - MYSQL_PASSWORD:root
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=tpFoyer17
+    volumes:
+      - db_vol:/var/lib/mysqldb
+
+
+  foyer_app:
+    build: ./
+    image: houssem
+    restart: unless-stopped
+    ports:
+      - 8089:8089
+    depends_on:
+      - mysqldb
+
+
+volumes:
+  db_vol:
