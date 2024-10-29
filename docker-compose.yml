@@ -20,7 +20,7 @@ services:
     image: houssem
     restart: unless-stopped
     ports:
-      - 8089:8089
+      - 8082:8082
     depends_on:
       - mysqldb
 
